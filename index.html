@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Team Consent Form - Fischer Brown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -17,9 +18,6 @@
             color: #333;
             padding: 20px;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
         
         .container {
@@ -27,8 +25,9 @@
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
+            max-width: 1000px;
             width: 100%;
+            margin: 0 auto;
         }
         
         .header {
@@ -45,6 +44,12 @@
         .header p {
             color: #718096;
             font-size: 1.1rem;
+        }
+        
+        .header-logo {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
         }
         
         .benefits {
@@ -77,6 +82,12 @@
             font-weight: bold;
             position: absolute;
             left: 0;
+        }
+        
+        .form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
         
         .form-group {
@@ -126,6 +137,7 @@
             cursor: pointer;
             width: 100%;
             transition: transform 0.2s;
+            margin-top: 20px;
         }
         
         .submit-btn:hover {
@@ -180,7 +192,7 @@
 
         .blocks-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             margin-top: 10px;
         }
@@ -211,8 +223,72 @@
             cursor: pointer;
         }
         
-        @media (max-width: 600px) {
+        .faq-section {
+            margin-top: 40px;
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .faq-item {
+            margin: 15px 0;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+        
+        .faq-answer {
+            color: #718096;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .skill-checkbox {
+            display: flex;
+            align-items: center;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .skill-checkbox:hover {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+        
+        .skill-checkbox input {
+            width: auto;
+            margin-right: 12px;
+        }
+        
+        .skill-checkbox label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 900px) {
+            .form-section {
+                grid-template-columns: 1fr;
+            }
+            
             .blocks-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .blocks-container, .skills-container {
                 grid-template-columns: 1fr;
             }
             
@@ -223,23 +299,49 @@
             .header h1 {
                 font-size: 2rem;
             }
+            
+            .contact-details {
+                flex-direction: column;
+            }
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.5s;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Website Team Consent Form</h1>
+            <div class="header-logo">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <h1>Website Development Team Application</h1>
             <p>Join Fischer Brown's website development team with flexible participation</p>
         </div>
         
+        <div class="progress-bar">
+            <div class="progress" id="formProgress"></div>
+        </div>
+        
         <div class="success-message" id="successMessage">
-            <h3>✅ Thank you for joining the team!</h3>
+            <h3><i class="fas fa-check-circle"></i> Thank you for joining the team!</h3>
             <p>Your response has been received. Fischer will contact you soon.</p>
         </div>
         
         <div class="benefits">
-            <h3>What You Get By Joining:</h3>
+            <h3><i class="fas fa-gift"></i> What You Get By Joining:</h3>
             <ul>
                 <li>Infinite breaks (no strict teacher worries)</li>
                 <li>Participation in development events</li>
@@ -247,6 +349,8 @@
                 <li>Choice of which websites to monitor/develop</li>
                 <li>Customer support monitoring experience</li>
                 <li>Free to leave the program anytime</li>
+                <li>Gain real-world web development experience</li>
+                <li>Collaborate with other student developers</li>
             </ul>
         </div>
         
@@ -254,74 +358,124 @@
         <form action="https://formsubmit.co/fischybigpants@gmail.com" method="POST" id="consentForm">
             <!-- FormSubmit Configuration -->
             <input type="hidden" name="_next" value="https://fischy6734.github.io/BM/success.html">
-            <input type="hidden" name="_subject" value="New Website Team Member - Consent Form">
+            <input type="hidden" name="_subject" value="New Website Team Member Application">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_autoresponse" value="Thank you for joining my website team! I'll be in touch soon with more details. - Fischer Brown">
+            <input type="hidden" name="_autoresponse" value="Thank you for applying to my website team! I'll be in touch soon with more details. - Fischer Brown">
             
-            <div class="form-group">
-                <label for="fullName">Full Name *</label>
-                <input type="text" id="fullName" name="fullName" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email Address *</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="grade">Grade Level *</label>
-                <select id="grade" name="grade" required>
-                    <option value="">Select your grade</option>
-                    <option value="6th">6th Grade</option>
-                    <option value="7th">7th Grade</option>
-                    <option value="8th">8th Grade</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="interests">What areas interest you? *</label>
-                <select id="interests" name="interests" required multiple size="4">
-                    <option value="ideas">Suggesting Website Ideas</option>
-                    <option value="monitoring">Website Monitoring</option>
-                    <option value="development">Website Development</option>
-                    <option value="support">Customer Support</option>
-                </select>
-                <small>Hold Ctrl/Cmd to select multiple options</small>
-            </div>
-            
-            <div class="form-group">
-                <label>Which blocks are you available? *</label>
-                <div class="blocks-container">
-                    <div class="block-checkbox">
-                        <input type="checkbox" id="block1" name="availableBlocks[]" value="Block 1">
-                        <label for="block1">Block 1</label>
+            <div class="form-section">
+                <div>
+                    <div class="form-group">
+                        <label for="fullName"><i class="fas fa-user"></i> Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Your full name">
                     </div>
-                    <div class="block-checkbox">
-                        <input type="checkbox" id="block2" name="availableBlocks[]" value="Block 2">
-                        <label for="block2">Block 2</label>
+                    
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
                     </div>
-                    <div class="block-checkbox">
-                        <input type="checkbox" id="block3" name="availableBlocks[]" value="Block 3">
-                        <label for="block3">Block 3</label>
+                    
+                    <div class="form-group">
+                        <label for="grade"><i class="fas fa-graduation-cap"></i> Grade Level *</label>
+                        <select id="grade" name="grade" required>
+                            <option value="">Select your grade</option>
+                            <option value="6th">6th Grade</option>
+                            <option value="7th">7th Grade</option>
+                            <option value="8th">8th Grade</option>
+                            <option value="9th">9th Grade</option>
+                            <option value="10th">10th Grade</option>
+                            <option value="11th">11th Grade</option>
+                            <option value="12th">12th Grade</option>
+                        </select>
                     </div>
-                    <div class="block-checkbox">
-                        <input type="checkbox" id="block4" name="availableBlocks[]" value="Block 4">
-                        <label for="block4">Block 4</label>
+                    
+                    <div class="form-group">
+                        <label for="experience"><i class="fas fa-code"></i> Web Development Experience *</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Select your experience level</option>
+                            <option value="beginner">Beginner (just starting)</option>
+                            <option value="intermediate">Intermediate (some knowledge)</option>
+                            <option value="advanced">Advanced (comfortable coding)</option>
+                            <option value="expert">Expert (can build complex sites)</option>
+                        </select>
                     </div>
-                    <div class="block-checkbox">
-                        <input type="checkbox" id="block5" name="availableBlocks[]" value="Block 5">
-                        <label for="block5">Block 5</label>
+                </div>
+                
+                <div>
+                    <div class="form-group">
+                        <label><i class="fas fa-pencil-alt"></i> Which areas interest you? *</label>
+                        <div class="skills-container">
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="design" name="interests[]" value="Design">
+                                <label for="design">Design</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="frontend" name="interests[]" value="Frontend">
+                                <label for="frontend">Frontend</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="backend" name="interests[]" value="Backend">
+                                <label for="backend">Backend</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="content" name="interests[]" value="Content">
+                                <label for="content">Content</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="testing" name="interests[]" value="Testing">
+                                <label for="testing">Testing</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="ideas" name="interests[]" value="Ideas">
+                                <label for="ideas">Ideas</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="block-checkbox">
-                        <input type="checkbox" id="block6" name="availableBlocks[]" value="Block 6">
-                        <label for="block6">Block 6</label>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Which blocks are you available? *</label>
+                        <div class="blocks-container">
+                            <div class="block-checkbox">
+                                <input type="checkbox" id="block1" name="availableBlocks[]" value="Block 1">
+                                <label for="block1">Block 1</label>
+                            </div>
+                            <div class="block-checkbox">
+                                <input type="checkbox" id="block2" name="availableBlocks[]" value="Block 2">
+                                <label for="block2">Block 2</label>
+                            </div>
+                            <div class="block-checkbox">
+                                <input type="checkbox" id="block3" name="availableBlocks[]" value="Block 3">
+                                <label for="block3">Block 3</label>
+                            </div>
+                            <div class="block-checkbox">
+                                <input type="checkbox" id="block4" name="availableBlocks[]" value="Block 4">
+                                <label for="block4">Block 4</label>
+                            </div>
+                            <div class="block-checkbox">
+                                <input type="checkbox" id="block5" name="availableBlocks[]" value="Block 5">
+                                <label for="block5">Block 5</label>
+                            </div>
+                            <div class="block-checkbox">
+                                <input type="checkbox" id="block6" name="availableBlocks[]" value="Block 6">
+                                <label for="block6">Block 6</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="message">Any questions or comments?</label>
+                <label for="skills"><i class="fas fa-tools"></i> What skills do you have? (optional)</label>
+                <textarea id="skills" name="skills" rows="3" placeholder="HTML, CSS, JavaScript, Design, Writing, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="projects"><i class="fas fa-project-diagram"></i> What projects would you like to work on? (optional)</label>
+                <textarea id="projects" name="projects" rows="3" placeholder="School website, Weather app, Game, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="message"><i class="fas fa-comment"></i> Any questions or comments?</label>
                 <textarea id="message" name="message" rows="4" placeholder="Tell me about your interests or experience..."></textarea>
             </div>
             
@@ -335,26 +489,55 @@
                 <label for="parentalConsent">I have parental permission to participate in this program *</label>
             </div>
             
-            <button type="submit" class="submit-btn">Join the Team</button>
+            <div class="checkbox-group">
+                <input type="checkbox" id="commitment" name="commitment">
+                <label for="commitment">I'm interested in taking a leadership role on the team</label>
+            </div>
+            
+            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Submit Application</button>
         </form>
         
+        <div class="faq-section">
+            <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question">How much time do I need to commit?</div>
+                <div class="faq-answer">As much or as little as you want! This is a flexible program designed to work around your schedule.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do I need coding experience?</div>
+                <div class="faq-answer">No! We welcome all skill levels. If you're new to coding, we can help you learn.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What if I join but then get too busy?</div>
+                <div class="faq-answer">No problem! You can take breaks whenever needed or leave the program entirely.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What kind of projects will we work on?</div>
+                <div class="faq-answer">We'll work on various web projects including school-related websites, apps, and tools that benefit students.</div>
+            </div>
+        </div>
+        
         <div class="contact-info">
-            <h3>Get in Contact</h3>
+            <h3><i class="fas fa-address-card"></i> Get in Contact</h3>
             <div class="contact-details">
                 <div class="contact-item">
-                    <strong>Fischer Brown</strong><br>
+                    <strong><i class="fas fa-user"></i> Fischer Brown</strong><br>
                     Team Lead
                 </div>
                 <div class="contact-item">
-                    <strong>Email (Main)</strong><br>
+                    <strong><i class="fas fa-envelope"></i> Email (Main)</strong><br>
                     Fischybigpants@gmail.com
                 </div>
                 <div class="contact-item">
-                    <strong>Email (School)</strong><br>
+                    <strong><i class="fas fa-envelope"></i> Email (School)</strong><br>
                     5137455873@student.cms.k12.nc.us
                 </div>
                 <div class="contact-item">
-                    <strong>Phone</strong><br>
+                    <strong><i class="fas fa-phone"></i> Phone</strong><br>
                     (980) 280-7894
                 </div>
             </div>
@@ -366,6 +549,26 @@
     </div>
 
     <script>
+        // Update progress bar as user fills form
+        const formFields = document.querySelectorAll('input, select, textarea');
+        const progressBar = document.getElementById('formProgress');
+        
+        formFields.forEach(field => {
+            field.addEventListener('input', updateProgress);
+        });
+        
+        function updateProgress() {
+            let filledFields = 0;
+            formFields.forEach(field => {
+                if (field.value.trim() !== '' || (field.type === 'checkbox' && field.checked)) {
+                    filledFields++;
+                }
+            });
+            
+            const progress = (filledFields / formFields.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
         // Handle form submission and show success message
         document.getElementById('consentForm').addEventListener('submit', function(e) {
             // Basic validation
@@ -373,13 +576,27 @@
             let valid = true;
             
             requiredFields.forEach(field => {
-                if (!field.value.trim()) {
+                if (!field.value.trim() && !field.checked) {
                     valid = false;
                     field.style.borderColor = '#e53e3e';
                 } else {
                     field.style.borderColor = '#e2e8f0';
                 }
             });
+            
+            // Validate at least one interest is selected
+            const interestCheckboxes = document.querySelectorAll('input[name="interests[]"]');
+            const atLeastOneInterest = Array.from(interestCheckboxes).some(cb => cb.checked);
+            
+            if (!atLeastOneInterest) {
+                valid = false;
+                document.querySelector('.skills-container').style.border = '2px solid #e53e3e';
+                document.querySelector('.skills-container').style.borderRadius = '8px';
+                document.querySelector('.skills-container').style.padding = '10px';
+            } else {
+                document.querySelector('.skills-container').style.border = '';
+                document.querySelector('.skills-container').style.padding = '';
+            }
             
             // Validate at least one block is selected
             const blockCheckboxes = document.querySelectorAll('input[name="availableBlocks[]"]');
@@ -397,7 +614,7 @@
             
             if (!valid) {
                 e.preventDefault();
-                alert('Please fill in all required fields and select at least one available block.');
+                alert('Please fill in all required fields and select at least one interest and available block.');
                 return;
             }
             
