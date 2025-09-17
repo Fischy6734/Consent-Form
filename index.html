@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Team Consent Form - Fischer Brown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #4a5568;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        
+        .benefits {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .benefits h3 {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .benefits ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .benefits li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .benefits li:before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .form-group {
+            margin: 20px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .contact-info {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .contact-info h3 {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 200px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .disclaimer {
+            font-size: 0.9rem;
+            color: #718096;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .success-message {
+            display: none;
+            background: #48bb78;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .blocks-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .block-checkbox {
+            display: flex;
+            align-items: center;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        
+        .block-checkbox:hover {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+        
+        .block-checkbox input {
+            width: auto;
+            margin-right: 12px;
+        }
+        
+        .block-checkbox label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 600px) {
+            .blocks-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Website Team Consent Form</h1>
+            <p>Join Fischer Brown's website development team with flexible participation</p>
+        </div>
+        
+        <div class="success-message" id="successMessage">
+            <h3>✅ Thank you for joining the team!</h3>
+            <p>Your response has been received. Fischer will contact you soon.</p>
+        </div>
+        
+        <div class="benefits">
+            <h3>What You Get By Joining:</h3>
+            <ul>
+                <li>Infinite breaks (no strict teacher worries)</li>
+                <li>Participation in development events</li>
+                <li>Opportunity to suggest website ideas</li>
+                <li>Choice of which websites to monitor/develop</li>
+                <li>Customer support monitoring experience</li>
+                <li>Free to leave the program anytime</li>
+            </ul>
+        </div>
+        
+        <!-- FormSubmit Integration -->
+        <form action="https://formsubmit.co/fischybigpants@gmail.com" method="POST" id="consentForm">
+            <!-- FormSubmit Configuration -->
+            <input type="hidden" name="_next" value="https://fischy6734.github.io/BM/success.html">
+            <input type="hidden" name="_subject" value="New Website Team Member - Consent Form">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Thank you for joining my website team! I'll be in touch soon with more details. - Fischer Brown">
+            
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="grade">Grade Level *</label>
+                <select id="grade" name="grade" required>
+                    <option value="">Select your grade</option>
+                    <option value="6th">6th Grade</option>
+                    <option value="7th">7th Grade</option>
+                    <option value="8th">8th Grade</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="interests">What areas interest you? *</label>
+                <select id="interests" name="interests" required multiple size="4">
+                    <option value="ideas">Suggesting Website Ideas</option>
+                    <option value="monitoring">Website Monitoring</option>
+                    <option value="development">Website Development</option>
+                    <option value="support">Customer Support</option>
+                </select>
+                <small>Hold Ctrl/Cmd to select multiple options</small>
+            </div>
+            
+            <div class="form-group">
+                <label>Which blocks are you available? *</label>
+                <div class="blocks-container">
+                    <div class="block-checkbox">
+                        <input type="checkbox" id="block1" name="availableBlocks[]" value="Block 1">
+                        <label for="block1">Block 1</label>
+                    </div>
+                    <div class="block-checkbox">
+                        <input type="checkbox" id="block2" name="availableBlocks[]" value="Block 2">
+                        <label for="block2">Block 2</label>
+                    </div>
+                    <div class="block-checkbox">
+                        <input type="checkbox" id="block3" name="availableBlocks[]" value="Block 3">
+                        <label for="block3">Block 3</label>
+                    </div>
+                    <div class="block-checkbox">
+                        <input type="checkbox" id="block4" name="availableBlocks[]" value="Block 4">
+                        <label for="block4">Block 4</label>
+                    </div>
+                    <div class="block-checkbox">
+                        <input type="checkbox" id="block5" name="availableBlocks[]" value="Block 5">
+                        <label for="block5">Block 5</label>
+                    </div>
+                    <div class="block-checkbox">
+                        <input type="checkbox" id="block6" name="availableBlocks[]" value="Block 6">
+                        <label for="block6">Block 6</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Any questions or comments?</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell me about your interests or experience..."></textarea>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">I understand that I can take infinite breaks and leave the program at any time *</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="parentalConsent" name="parentalConsent" required>
+                <label for="parentalConsent">I have parental permission to participate in this program *</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Join the Team</button>
+        </form>
+        
+        <div class="contact-info">
+            <h3>Get in Contact</h3>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <strong>Fischer Brown</strong><br>
+                    Team Lead
+                </div>
+                <div class="contact-item">
+                    <strong>Email (Main)</strong><br>
+                    Fischybigpants@gmail.com
+                </div>
+                <div class="contact-item">
+                    <strong>Email (School)</strong><br>
+                    5137455873@student.cms.k12.nc.us
+                </div>
+                <div class="contact-item">
+                    <strong>Phone</strong><br>
+                    (980) 280-7894
+                </div>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            This is a voluntary student-led program. Participation can be terminated at any time by either party.
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission and show success message
+        document.getElementById('consentForm').addEventListener('submit', function(e) {
+            // Basic validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let valid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.style.borderColor = '#e53e3e';
+                } else {
+                    field.style.borderColor = '#e2e8f0';
+                }
+            });
+            
+            // Validate at least one block is selected
+            const blockCheckboxes = document.querySelectorAll('input[name="availableBlocks[]"]');
+            const atLeastOneBlock = Array.from(blockCheckboxes).some(cb => cb.checked);
+            
+            if (!atLeastOneBlock) {
+                valid = false;
+                document.querySelector('.blocks-container').style.border = '2px solid #e53e3e';
+                document.querySelector('.blocks-container').style.borderRadius = '8px';
+                document.querySelector('.blocks-container').style.padding = '10px';
+            } else {
+                document.querySelector('.blocks-container').style.border = '';
+                document.querySelector('.blocks-container').style.padding = '';
+            }
+            
+            if (!valid) {
+                e.preventDefault();
+                alert('Please fill in all required fields and select at least one available block.');
+                return;
+            }
+            
+            // If using FormSubmit, the form will submit normally
+            // You can add additional processing here if needed
+            
+            // Optional: Show success message after a brief delay
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'block';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
